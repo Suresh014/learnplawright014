@@ -3,6 +3,8 @@ const { TIMEOUT } = require('node:dns');
 
 test("click one of the elements that is visible out of five",async({page})=>{
 
+    test.setTimeout(60000)
+
     await page.goto("https://www.website.com/?source=SC&country=IN")
 
     const start_for_free = page.getByRole("link",{name:"START FOR FREE"})
@@ -17,7 +19,9 @@ test("click one of the elements that is visible out of five",async({page})=>{
 
     if(await get_email.isVisible()){
 
-        await page.locator("//a[@title='Get Email']",{timeout:15000}).click()
+        await page.locator("//div[@class='sitebuilder']/following-sibling::div[1]")
+
+        await page.locator("//a[@title='Get Email']",{timeout:10000}).click()
 
         console.log("Clicked on get email")
 
